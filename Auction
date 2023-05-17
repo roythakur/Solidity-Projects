@@ -8,8 +8,27 @@
 
     // aution status(has eneded or not)
 
-    //end time;
+    //end time
 
-    //start time;
+    //start time
 
     //winner
+    
+    
+    
+    
+    contract Auction{
+    
+    address owner; 
+
+    uint public startTime; 
+
+    uint public endTime; 
+
+    bool hasEnded; //used
+
+    address payable public highestBidder;
+
+    uint public highestBid;
+
+    address payable public winner; 
