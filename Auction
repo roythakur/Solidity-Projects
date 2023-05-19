@@ -25,10 +25,38 @@
 
     uint public endTime; 
 
-    bool hasEnded; //used
+    bool hasEnded; 
 
     address payable public highestBidder;
 
     uint public highestBid;
 
     address payable public winner; 
+
+mapping (address=>uint) public bidsByParticipants;
+
+    modifier notOwner(){
+
+        require(msg.sender!=owner,"Owner can't be participant");_;
+
+    }
+
+    modifier onlyOwner(){
+
+        require(msg.sender==owner,"You don't have access");_;
+
+    }
+
+
+    modifier runningAuction(){
+
+        require(!hasEnded,"Auction has been ended");_;
+
+    }
+
+
+    constructor(){
+
+        owner=msg.sender;
+
+        startTime=block.timestamp;
