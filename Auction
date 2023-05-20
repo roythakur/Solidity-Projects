@@ -60,3 +60,27 @@ mapping (address=>uint) public bidsByParticipants;
         owner=msg.sender;
 
         startTime=block.timestamp;
+        
+          }
+
+      
+
+    function placeBid() payable public notOwner runningAuction{
+
+      require (highestBid<bidsByParticipants[msg.sender]+msg.value,"You bid is below than the current highest bid.");
+
+        bidsByParticipants[msg.sender]+=msg.value;       
+
+       // bidsByParticipants[msg.sender]=bidsByParticipants[msg.sender]+msg.value;
+
+   
+
+       if (highestBid<bidsByParticipants[msg.sender]){
+
+           highestBid=bidsByParticipants[msg.sender];
+
+           highestBidder=payable(msg.sender);
+
+       }
+
+    }
