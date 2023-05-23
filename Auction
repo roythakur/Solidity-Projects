@@ -80,7 +80,39 @@ mapping (address=>uint) public bidsByParticipants;
            highestBid=bidsByParticipants[msg.sender];
 
            highestBidder=payable(msg.sender);
+           
 
        }
 
     }
+     
+
+    function endAuction() payable public onlyOwner {
+
+        winner=highestBidder;
+
+        hasEnded=true;
+
+        endTime=block.timestamp;
+
+
+       
+
+        //return everyone's ethers except winner
+
+    }
+
+    function getMyBid() public notOwner view returns (uint){
+
+        return bidsByParticipants[msg.sender];
+
+    }
+
+    function withdrawBid() public  payable  notOwner runningAuction{
+
+        require(msg.sender!=highestBidder,"You can't withdraw the bid");
+        
+        }
+        
+        
+        }
