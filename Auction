@@ -112,6 +112,10 @@ mapping (address=>uint) public bidsByParticipants;
 
         require(msg.sender!=highestBidder,"You can't withdraw the bid");
         
+             payable(address(msg.sender)).transfer(bidsByParticipants[msg.sender]);
+
+       bidsByParticipants[msg.sender]=0;
+        
         }
         
         
